@@ -1,0 +1,400 @@
+/* colors */
+/* Gruvbox Dark */
+@define-color lightbg   #fbf1c7;
+@define-color bg        #282828;
+@define-color fglight   #282828;
+@define-color bg1       #3c3836;
+@define-color bg2       #504945;
+@define-color bg3       #665c54;
+@define-color bg4       #7c6f64;
+@define-color fg        #ebdbb2;
+@define-color red       #cc241d;
+@define-color green     #98971a;
+@define-color yellow    #d79921;
+@define-color blue      #458588;
+@define-color purple    #b16286;
+@define-color aqua      #689d6a;
+@define-color gray      #a89984;
+@define-color brgray    #928374;
+@define-color brred     #fb4934;
+@define-color brgreen   #b8bb26;
+@define-color bryellow  #fabd2f;
+@define-color brblue    #83a598;
+@define-color brpurple  #d3869b;
+@define-color braqua    #8ec07c;
+@define-color orange    #d65d0e;
+@define-color brorange  #fe8019;
+@define-color tooltipbg rgba(40, 40, 40, 0.8);
+
+/* Gruvbox Light */
+/*
+@define-color bg        #fbf1c7;
+@define-color fglight   #fbf1c7;
+@define-color bg1       #ebdbb2;
+@define-color bg2       #d5c4a1;
+@define-color bg3       #bdae93;
+@define-color bg4       #a89984;
+@define-color fg        #3c3836;
+@define-color red       #cc241d;
+@define-color green     #98971a;
+@define-color yellow    #d79921;
+@define-color blue      #458588;
+@define-color purple    #b16286;
+@define-color aqua      #689d6a;
+@define-color gray      #7c6f64;
+@define-color brgray    #928374;
+@define-color brred     #9d0006;
+@define-color brgreen   #79740e;
+@define-color bryellow  #b57614;
+@define-color brblue    #076678;
+@define-color brpurple  #8f3f71;
+@define-color braqua    #427b58;
+@define-color orange    #d65d0e;
+@define-color brorange  #af3a03;
+@define-color tooltipbg rgba(251, 241, 199, 0.8);
+*/
+
+* {
+  font-size: 14px;
+  border-radius: 5px;
+}
+
+tooltip {
+  font-family: "FiraCode Nerd Font", "Nerd Font Symbols", monospace;
+  background-color: @tooltipbg;
+  border-radius: 5px;
+  border: 1px solid @bg3;
+}
+
+tooltip label {
+  color: @fg;
+  text-shadow: none;
+}
+
+window#waybar {
+  font-family: "FiraCode Nerd Font", "Nerd Font Symbols", monospace;
+  background-color: transparent;
+  border-bottom: 0px;
+  color: @fg;
+  transition-property: background-color;
+  transition-duration: 0.5s;
+}
+
+window#waybar.hidden {
+  opacity: 0.2;
+}
+
+window#waybar.empty #window {
+  background-color: transparent;
+  padding: 0;
+}
+
+/*
+window#waybar.empty {
+    background-color: transparent;
+}
+window#waybar.solo {
+    background-color: #FFFFFF;
+}
+*/
+
+.modules-right {
+  margin: 10px 10px 0 0;
+}
+.modules-center {
+  margin: 10px 0 0 0;
+}
+.modules-left {
+  margin: 10px 0 0 10px;
+}
+
+button {
+  /* Use box-shadow instead of border so the text isn't offset */
+  /* box-shadow: inset 0 -3px transparent; */
+  border: none;
+}
+
+/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
+/*
+button:hover {
+    background: inherit;
+    box-shadow: inset 0 -3px @fg;
+} */
+
+#workspaces {
+  background-color: @bg;
+}
+
+#workspaces button {
+  padding: 0 5px;
+  background-color: transparent;
+  color: @fg;
+  border-radius: 0;
+}
+
+#workspaces button:first-child {
+  border-radius: 5px 0 0 5px;
+}
+
+#workspaces button:last-child {
+  border-radius: 0 5px 5px 0;
+}
+
+#workspaces button:first-child:last-child {
+  border-radius: 5px;
+}
+
+#workspaces button:hover {
+  color: @yellow;
+}
+
+#workspaces button.focused {
+  background-color: @bg3;
+  /* box-shadow: inset 0 -3px #ffffff; */
+}
+
+#workspaces button.urgent {
+  background-color: @purple;
+}
+
+#idle_inhibitor,
+#cava,
+#scratchpad,
+#mode,
+#clock,
+#backlight,
+#custom-weather,
+#custom-audio_idle_inhibitor,
+#wireplumber,
+#tray,
+#mpris,
+#load {
+  padding: 0 10px;
+  background-color: @bg;
+  color: @fg;
+}
+
+#window {
+  padding: 0 10px;
+  background-color: @fg;
+  color: @bg1;
+}
+
+#mode {
+  background-color: @aqua;
+  color: @fglight;
+  /* box-shadow: inset 0 -3px #ffffff; */
+}
+
+/* If workspaces is the leftmost module, omit left margin */
+.modules-left > widget:first-child > #workspaces {
+  margin-left: 0;
+}
+
+/* If workspaces is the rightmost module, omit right margin */
+.modules-right > widget:last-child > #workspaces {
+  margin-right: 0;
+}
+
+#cava {
+  padding: 0 5px;
+}
+
+#battery.charging,
+#battery.plugged {
+  background-color: @green;
+  color: @fglight;
+}
+
+@keyframes blink {
+  to {
+    background-color: @bg;
+    color: @fg;
+  }
+}
+
+/* Using steps() instead of linear as a timing function to limit cpu usage */
+#battery.critical:not(.charging) {
+  background-color: @red;
+  color: @fg;
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-timing-function: steps(12);
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+#wireplumber.muted {
+  background-color: @blue;
+}
+
+#tray > .passive {
+  -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+  -gtk-icon-effect: highlight;
+}
+
+#mpris.playing {
+  background-color: @yellow;
+  color: @fglight;
+}
+
+#tray menu {
+  font-family: sans-serif;
+}
+
+#scratchpad.empty {
+  background: transparent;
+  padding: 0;
+}
+
+/* CPU Module */
+#cpu {
+  background-color: @blue;
+  color: @fg;
+  padding: 0 10px;
+  /* margin: 0 2px; */
+  /* border-radius: 5px; */
+}
+
+#cpu:hover {
+  background-color: @brblue;
+  color: @fglight;
+}
+
+/* Memory/RAM Module */
+#memory {
+  background-color: @purple;
+  color: @fg;
+  padding: 0 10px;
+  /* margin: 0 2px; */
+  /* border-radius: 5px; */
+}
+
+#memory:hover {
+  background-color: @brpurple;
+  color: @fglight;
+}
+
+/* Other modules hover effects */
+#idle_inhibitor:hover,
+#cava:hover,
+#scratchpad:hover,
+#mode:hover,
+#clock:hover,
+#backlight:hover,
+#custom-weather:hover,
+#custom-audio_idle_inhibitor:hover,
+#wireplumber:hover,
+#tray:hover,
+#mpris:hover,
+#load:hover {
+  background-color: @bg3;
+  color: @bryellow;
+}
+
+/* Battery Module - hover effects for all states */
+#battery {
+  padding: 0 10px;
+  background-color: @yellow;
+  color: @fg;
+}
+
+#battery:hover {
+  background-color: @bryellow;
+  color: @fglight;
+}
+
+#battery.charging:hover,
+#battery.plugged:hover {
+  background-color: @brgreen;
+  color: @fglight;
+}
+
+#battery.critical:hover:not(.charging) {
+  background-color: @brred;
+  color: @fglight;
+}
+
+/* GPU module styling */
+#custom-gpu {
+  padding: 0 10px;
+  background-color: @aqua;
+  color: @fg;
+  font-family: "FiraCode Nerd Font", monospace;
+}
+
+#custom-gpu:hover {
+  background-color: @braqua;
+  color: @fglight;
+}
+
+#custom-gpu.gpu-low {
+  background-color: @aqua;
+  color: @fg;
+}
+
+#custom-gpu.gpu-low:hover {
+  background-color: @braqua;
+  color: @fglight;
+}
+
+#custom-gpu.gpu-medium {
+  background-color: @yellow;
+  color: @fg;
+}
+
+#custom-gpu.gpu-medium:hover {
+  background-color: @bryellow;
+  color: @fglight;
+}
+
+#custom-gpu.gpu-high {
+  background-color: @red;
+  color: @fg;
+}
+
+#custom-gpu.gpu-high:hover {
+  background-color: @brred;
+  color: @fglight;
+}
+
+/* Network Module */
+#network {
+  background-color: @yellow;
+  color: @fg;
+  padding: 0 10px;
+  /* margin: 0 2px; */
+  /* border-radius: 5px; */
+}
+
+#network:hover {
+  background-color: @bryellow;
+  color: @fglight;
+}
+
+#network.ethernet,
+#network.wifi {
+  background-color: @yellow;
+  color: @fg;
+}
+
+#network.ethernet:hover,
+#network.wifi:hover {
+  background-color: @bryellow;
+  color: @fglight;
+}
+
+#network.disconnected,
+#network.disabled {
+  background-color: @gray;
+  color: @fg;
+}
+
+#network.disconnected:hover,
+#network.disabled:hover {
+  background-color: @brgray;
+  color: @fglight;
+}

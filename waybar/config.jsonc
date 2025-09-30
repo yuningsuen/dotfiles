@@ -1,0 +1,164 @@
+// -*- mode: jsonc -*-
+[
+  {
+    "layer": "top", // Waybar at top layer
+    "position": "top", // Waybar position (top|bottom|left|right)
+    "height": 24, // Waybar height (to be removed for auto height)
+    "width": 1280, // Waybar width
+    "spacing": 4, // Gaps between modules (4px)
+
+    // Choose the order of the modules
+    "modules-left": [
+      "sway/workspaces",
+      "sway/mode",
+      "sway/scratchpad",
+      "sway/window"
+    ],
+    "modules-center": ["clock", "cava", "mpris"],
+    "modules-right": [
+      "wireplumber",
+      "battery",
+      "cpu",
+      "memory",
+      "custom/gpu",
+      "network",
+      "tray"
+    ],
+
+    // Modules configuration
+    "sway/workspaces": {
+      "all-outputs": true,
+      "warp-on-scroll": false,
+      "enable-bar-scroll": true,
+      "disable-scroll-wraparound": true,
+      "active-only": false,
+      "format": "{icon}",
+      "format-icons": {
+        "1": "",
+        "2": "",
+        "3": "",
+        "4": ""
+      },
+      "persistent-workspaces": {
+        "1": [],
+        "2": [],
+        "3": [],
+        "4": []
+      }
+    },
+    "sway/mode": {
+      "format": "<span style=\"italic\">{}</span>"
+    },
+    "sway/scratchpad": {
+      "format": "{icon} {count}",
+      "show-empty": false,
+      "format-icons": ["", ""],
+      "tooltip": true,
+      "tooltip-format": "{app}: {title}"
+    },
+
+    "sway/window": {
+      "format": "{title}",
+      "max-length": 50,
+      "all-outputs": true
+    },
+
+    "clock": {
+      // "timezone": "America/New_York",
+      "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+      "format": " {:%H:%M}",
+      "format-alt": " {:%a %F}"
+    },
+    "cava": {
+      "framerate": 30,
+      "autosens": 1,
+      "bars": 14,
+      "lower_cutoff_freq": 50,
+      "higher_cutoff_freq": 10000,
+      "method": "pulse",
+      "source": "auto",
+      "stereo": true,
+      "bar_delimiter": 0,
+      "noise_reduction": 0.77,
+      "input_delay": 2,
+      "hide_on_silence": true,
+      "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"],
+      "actions": {
+        "on-click-right": "mode"
+      },
+      "on-click": "swaymsg [app_id=spotify] focus"
+    },
+    "mpris": {
+      "player": "spotify",
+      "format": " {status_icon} {dynamic}",
+      "interval": 1,
+      "dynamic-len": 60,
+      "status-icons": {
+        "playing": "▶",
+        "paused": "⏸",
+        "stopped": ""
+      },
+      "dynamic-order": ["title"],
+      "ignored-players": ["firefox"],
+      "max-length": 20
+    },
+
+    "battery": {
+      "format": "{icon}{capacity}",
+      "format-full": "{icon}{capacity}",
+      "format-charging": "󰃨 {capacity}",
+      "format-plugged": " {capacity}",
+      "format-icons": [" ", " ", " ", " ", " "],
+      "on-click": "wlogout"
+    },
+    "wireplumber": {
+      "scroll-step": 5,
+      "format": "{icon} {volume}",
+      "format-muted": " {volume}",
+      "format-icons": ["", ""],
+      "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+      "on-click-right": "pavucontrol"
+    },
+    "cpu": {
+      "interval": 5,
+      "format": " {usage}",
+      "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"],
+      "tooltip": true,
+      "tooltip-format": "{icon0}{icon1}{icon2}{icon3}{icon4}{icon5}",
+      "on-click": "kitty -e btop"
+    },
+    "memory": {
+      "interval": 5,
+      "format": " {used:0.1f}",
+      "tooltip": true,
+      "tooltip-format": "Used: {used} GiB\nAvailable: {avail} GiB",
+      "on-click": "kitty -e btop"
+    },
+    "custom/gpu": {
+      "interval": 5,
+      "format": "{icon}{text}",
+      "format-icons": [" ", " "],
+      "exec": "~/.config/waybar/scripts/gpu_status.sh",
+      "return-type": "json",
+      "on-click": "kitty -e nvtop"
+    },
+    "network": {
+      "interval": 5,
+      "format": "{ifname}",
+      "format-wifi": " {bandwidthTotalBytes}",
+      "format-ethernet": " {bandwidthTotalBytes}",
+      "format-disconnected": "💀",
+      "format-disabled": "💀",
+      "tooltip-format": "󰊗 {ifname} via {gwaddr}",
+      "tooltip-format-wifi": "{essid}\n{signalStrength}%\n{bandwidthDownBytes}{bandwidthUpBytes}",
+      "tooltip-format-ethernet": "{ipaddr}\n{ifname}\n{bandwidthDownBytes}{bandwidthUpBytes}",
+      "tooltip-format-disconnected": "Disconnected",
+      "tooltip-format-disabled": "Disabled",
+      "on-click": "nm-applet --indicator"
+    },
+    "tray": {
+      "icon-size": 18,
+      "spacing": 11
+    }
+  }
+]

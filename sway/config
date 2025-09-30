@@ -1,0 +1,40 @@
+bar {
+    swaybar_command waybar
+}
+
+# Set keyboard layout
+input type:keyboard xkb_layout us
+
+input * {
+    repeat_rate 35
+}
+
+exec swayidle
+# exec sway-audio-idle-inhibit --ignore-source-outputs cava
+
+# NetworkManager is the most popular way to manage wireless networks on Linux,
+# and nm-applet is a desktop environment-independent system tray GUI for it.
+exec nm-applet --indicator
+
+# Set XDG DBus Env
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+
+# Start programs
+exec mako
+exec fcitx5
+exec blueman-applet
+exec /usr/lib/polkit-kde-authentication-agent-1
+exec clash-nyanpasu
+exec sleep 3 && keepassxc
+exec sleep 4 && stretchly
+exec env kitty
+exec firefox
+
+# clipcat
+exec_always --no-startup-id clipcatd # start clipcatd at startup
+
+include $HOME/.config/sway/config.d/*
+include /etc/sway/config.d/*
+
+# only enable this if every app you use is compatible with wayland
+# xwayland disable

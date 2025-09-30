@@ -1,0 +1,5 @@
+# Dual monitors
+output HDMI-A-1 mode 3840x2160 pos 0 0 scale 2
+output eDP-1 mode 1920x1080 pos 1920 0 scale 1.5
+
+default_orientation horizontal
