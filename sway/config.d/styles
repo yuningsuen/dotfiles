@@ -34,8 +34,8 @@ client.urgent           $purple         $purple         $fg     $purplealpha
 title_align center
 
 # Gaps
-# gaps inner 4px
-gaps outer 4px
+gaps inner 2
+gaps outer 2
 # Only enable gaps on a workspace when there is at least one container
 # smart_gaps on
 

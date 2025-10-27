@@ -99,13 +99,13 @@ window#waybar.solo {
 */
 
 .modules-right {
-  margin: 10px 10px 0 0;
+  margin: 4 4 0 0;
 }
 .modules-center {
-  margin: 10px 0 0 0;
+  margin: 4 0 0 0;
 }
 .modules-left {
-  margin: 10px 0 0 10px;
+  margin: 4 0 0 4;
 }
 
 button {

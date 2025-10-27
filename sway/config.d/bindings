@@ -7,6 +7,7 @@ bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +10%
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -10%
 bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
+bindsym XF86AudioPlay exec playerctl play-pause
 
 # ------------------------------------------------------------------------------------
 # quick launch apps
@@ -15,6 +16,7 @@ bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
 bindsym $mod+Return exec kitty
 # app launcher
 bindsym $mod+space exec pgrep -x rofi >/dev/null 2>&1 && killall rofi || rofi -show drun -modes combi -combi-modes "window,drun" -matching fuzzy
+bindsym XF86SEARCH exec pgrep -x rofi >/dev/null 2>&1 && killall rofi || rofi -show drun -modes combi -combi-modes "window,drun" -matching fuzzy
 # file explorer
 bindsym $mod+e exec dolphin
 # code editor
@@ -57,7 +59,7 @@ bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
+bindsym $mod+t layout tabbed
 bindsym $mod+p layout splith
 
 # toggle tiling / floating
@@ -78,9 +80,6 @@ bindsym $mod+Shift+minus move scratchpad
 # Show the next scratchpad window or hide the focused scratchpad window.
 # If there are multiple scratchpad windows, this command cycles through them.
 bindsym $mod+minus scratchpad show
-
-# move the current workspace to the right monitor
-bindsym $mod+m move workspace to output right
 
 # lock the screen
 bindsym $mod+l exec wlogout
@@ -162,6 +161,7 @@ bindsym XF86MonBrightnessDown exec light -U 5
 
 bindsym Print exec grim - | wl-copy
 bindsym Ctrl+Print exec grim -g "$(slurp)" - | wl-copy
+bindsym Alt+Shift+s exec grim -g "$(slurp)" - | wl-copy
 bindsym $mod+Print exec grim -o $(swaymsg -t get_outputs | jq -r '.[] | select(.focused) | .name') - | wl-copy
 
 # ------------------------------------------------------------------------------------
@@ -174,7 +174,12 @@ bindsym $mod+Alt+Print exec killall -s SIGINT wf-recorder
 # ------------------------------------------------------------------------------------
 # miscells
 
+# Toggle laptop monitor
 bindsym $mod+Ctrl+t output eDP-1 toggle
+# Toggle control center
+bindsym $mod+Shift+n exec swaync-client -t -sw
+# emoji selector
+bindsym alt+period exec rofimoji
 
 # ------------------------------------------------------------------------------------
 # gestures

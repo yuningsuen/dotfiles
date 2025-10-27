@@ -20,11 +20,10 @@ exec nm-applet --indicator
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 
 # Start programs
-exec mako
+exec swaync
 exec fcitx5
 exec blueman-applet
 exec /usr/lib/polkit-kde-authentication-agent-1
-exec clash-nyanpasu
 exec sleep 3 && keepassxc
 exec sleep 4 && stretchly
 exec env kitty
@@ -38,3 +37,6 @@ include /etc/sway/config.d/*
 
 # only enable this if every app you use is compatible with wayland
 # xwayland disable
+
+# for Dolphin to open files with default apps as intended
+exec --no-startup-id env XDG_MENU_PREFIX=arch- kbuildsycoca6
