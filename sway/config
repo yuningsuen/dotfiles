@@ -22,7 +22,6 @@ exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DE
 # Start programs
 exec swaync
 exec fcitx5
-exec blueman-applet
 exec /usr/lib/polkit-kde-authentication-agent-1
 exec sleep 3 && keepassxc
 exec sleep 4 && stretchly

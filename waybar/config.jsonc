@@ -14,14 +14,13 @@
       "sway/scratchpad",
       "sway/window"
     ],
-    "modules-center": ["clock", "cava", "mpris"],
+    "modules-center": ["clock"],
     "modules-right": [
       "wireplumber",
       "battery",
       "cpu",
       "memory",
       "custom/gpu",
-      "network",
       "tray"
     ],
 
