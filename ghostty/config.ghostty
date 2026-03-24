@@ -1,0 +1,7 @@
+command = /usr/bin/fish
+theme = dark:Gruvbox Dark,light:Gruvbox Light
+font-family = FiraCode Nerd Font Mono
+background-opacity = 0.9
+background-blur = true
+gtk-titlebar-style = tabs
+gtk-titlebar-hide-when-maximized = true
