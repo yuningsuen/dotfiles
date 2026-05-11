@@ -1,4 +1,4 @@
-command = /usr/bin/fish
+command = /opt/homebrew/bin/fish
 theme = dark:Gruvbox Dark,light:Gruvbox Light
 font-family = FiraCode Nerd Font Mono
 background-opacity = 0.9
